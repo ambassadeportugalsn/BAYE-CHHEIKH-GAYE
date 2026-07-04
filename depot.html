@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dossier Visa Portugal · Agence Diplomatique</title>
+  <!-- Font Awesome 6 (gratuit) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    }
+
+    body {
+      background: #f4f7fa;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 0;
+      margin: 0;
+    }
+
+    /* Boutons d'action */
+    .header-actions {
+      position: static;
+      margin-top: 8px;
+      width: 100%;
+      justify-content: flex-start;
+      gap: 6px;
+    }
+
+    .btn {
+      background: rgba(255,255,255,0.08);
+      color: #f1f6f8;
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn:hover { background: rgba(255,255,255,0.12); }
+
+    .app-btn {
+      background: linear-gradient(135deg, #c8a24a 0%, #e3c16d 100%);
+      color: #102733;
+      border: none;
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 6px 14px rgba(200, 162, 74, 0.24);
+    }
+
+    /* Carte principale – élégante, comme un dossier d'agence */
+    .dossier-agence {
+      width: 100%;
+      max-width: 480px;
+      min-height: 100vh;
+      background: #ffffff;
+      box-shadow: none;
+      border-radius: 0;
+      overflow: hidden;
+      border: none;
+      position: relative;
+    }
+
+    /* En-tête « Agence » + photo et nom */
+    .header-diplomatique {
+      background: linear-gradient(135deg, #0b2330 0%, #133b4d 100%);
+      padding: 18px 16px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      border-bottom: 3px solid #c8a24a;
+      position: relative;
+    }
+
+    .badge-agence {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(200, 162, 74, 0.16);
+      padding: 5px 16px 5px 14px;
+      border-radius: 60px;
+      border: 1px solid rgba(200, 162, 74, 0.25);
+      margin-bottom: 6px;
+      width: fit-content;
+    }
+
+    .cachet {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 15px;
+      border: 1px solid rgba(233, 201, 126, 0.35);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      color: #f0dfb8;
+      font-size: 0.76rem;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .badge-agence i {
+      color: #dbb25a;
+      font-size: 0.9rem;
+    }
+
+    .badge-agence span {
+      color: #e8d5b0;
+      font-weight: 500;
+      letter-spacing: 0.4px;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+    }
+
+    .photo-profil {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #e9c97e;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+      background: #b6c9d6;
+      flex-shrink: 0;
+    }
+
+    .photo-profil:hover {
+      transform: scale(1.02);
+      border-color: #f5d48a;
+    }
+
+    .logo {
+      width: 64px;
+      height: 64px;
+      border-radius: 14px;
+      object-fit: contain;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      padding: 6px;
+      flex-shrink: 0;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.16);
+    }
+
+    .seal-block {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+
+    .seal-image, .stamp-image {
+      height: 52px;
+      width: 52px;
+      object-fit: contain;
+      filter: drop-shadow(0 6px 10px rgba(0,0,0,0.16));
+    }
+
+    .stamp-image {
+      height: 58px;
+      width: 58px;
+    }
+
+    .info-client {
+      color: white;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      flex: 1;
+    }
+
+    .info-client .nom-complet {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      line-height: 1.2;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-family: 'Georgia', 'Times New Roman', serif;
+    }
+
+    .info-client .nom-complet small {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: #d4c9b0;
+      background: rgba(0,0,0,0.25);
+      padding: 2px 16px;
+      border-radius: 40px;
+      letter-spacing: 0.2px;
+    }
+
+    .info-client .ref-dossier {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .info-client .ref-dossier .num-dossier {
+      background: #1d445a;
+      padding: 4px 18px;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #edddc0;
+      border: 1px solid #3e6a82;
+    }
+
+    .info-client .ref-dossier .statut {
+      background: #c9a84c;
+      color: #0b1e28;
+      padding: 4px 20px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.75rem;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+    }
+
+    .info-client .sous-titre {
+      margin-top: 8px;
+      font-size: 0.95rem;
+      color: #dfe9ef;
+      opacity: 0.95;
+      letter-spacing: 0.2px;
+    }
+
+    .info-client .ref-dossier .date-chip {
+      font-size: 0.8rem;
+      color: #b8cfdf;
+      background: rgba(255,255,255,0.06);
+      padding: 4px 12px;
+      border-radius: 40px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .status-card {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+    }
+
+    .status-pill--ok {
+      background: rgba(46, 204, 113, 0.16);
+      color: #dff8e8;
+      border: 1px solid rgba(92, 184, 92, 0.25);
+    }
+
+    .status-pill--warn {
+      background: rgba(200, 162, 74, 0.16);
+      color: #f8eecf;
+      border: 1px solid rgba(200, 162, 74, 0.25);
+    }
+
+    /* Contenu principal */
+    .contenu-dossier {
+      padding: 14px 14px 18px;
+      background: #fbfcfd;
+    }
+
+    /* chaque section */
+    .section-doc {
+      margin-bottom: 12px;
+      background: #fcfcfa;
+      border: 1px solid #e3e8ee;
+      border-left: 3px solid #c8a24a;
+      border-radius: 14px;
+      padding: 12px 12px 10px;
+      box-shadow: none;
+    }
+
+    .section-doc:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .titre-section {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid #e2e8ee;
+      padding-bottom: 10px;
+      margin-bottom: 14px;
+    }
+
+    .titre-section i {
+      font-size: 1.7rem;
+      color: #1b4b62;
+      width: 34px;
+      text-align: center;
+    }
+
+    .titre-section h2 {
+      font-weight: 700;
+      font-size: 1.16rem;
+      color: #103a49;
+      letter-spacing: -0.2px;
+      text-transform: uppercase;
+      font-size: 0.96rem;
+    }
+
+    .titre-section .compteur {
+      margin-left: auto;
+      background: #dce5ed;
+      color: #1a3f52;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 2px 14px;
+      border-radius: 30px;
+    }
+
+    /* Grille documents */
+    .grille-docs {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .doc-item {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.2s ease;
+      border: 1px solid #e8eef3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 10px 8px 10px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .doc-item:hover {
+      transform: translateY(-2px);
+      border-color: #bdd2e2;
+    }
+
+    .doc-item .type-doc {
+      font-size: 0.63rem;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #5f7a8b;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .doc-item img,
+    .doc-item .pdf-placeholder {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 18px;
+      background: #eef3f8;
+      display: block;
+      margin-bottom: 10px;
+      border: 1px solid #dde6ed;
+    }
+
+    /* placeholder PDF avec icône */
+    .pdf-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #f6fafc;
+      color: #1a4b63;
+      font-weight: 500;
+      gap: 4px;
+      padding: 10px 0;
+    }
+
+    .pdf-placeholder i {
+      font-size: 3rem;
+      color: #b22234;
+      opacity: 0.8;
+    }
+
+    .pdf-placeholder span {
+      font-size: 0.7rem;
+      background: rgba(0,0,0,0.02);
+      padding: 2px 14px;
+      border-radius: 30px;
+      color: #1f4a5e;
+    }
+
+    .doc-item .nom-fichier {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #16323f;
+      padding: 4px 4px 0;
+      width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .doc-item .meta-fichier {
+      font-size: 0.65rem;
+      background: #e4ecf3;
+      padding: 2px 12px;
+      border-radius: 40px;
+      color: #1d4459;
+      margin-top: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Récapitulatif */
+    .recap-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    .recap-item {
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:10px 12px;
+      border-radius:10px;
+      background:#fbfdff;
+      border:1px solid #e6eef4;
+      cursor:pointer;
+      transition:all .12s ease;
+    }
+
+    .recap-item:hover { transform:translateY(-3px); }
+
+    .status-dot {
+      width:14px; height:14px; border-radius:50%;
+      flex-shrink:0; border:2px solid rgba(0,0,0,0.06);
+    }
+
+    .status-yes { background: #2ecc71; box-shadow:0 4px 10px rgba(46,204,113,0.12); }
+    .status-no  { background: #e74c3c; box-shadow:0 4px 10px rgba(231,76,60,0.08); }
+
+    .progress { width:100%; height:10px; background:#e9f0f4; border-radius:999px; overflow:hidden; border:1px solid #d6e3ea; }
+    .progress-fill { height:100%; background:linear-gradient(90deg,#1f7fbf,#9ad1ff); width:0%; }
+
+    .hero-card {
+      background: linear-gradient(135deg, #f8fafc 0%, #f7efe2 100%);
+      border: 1px solid #e6e8ec;
+      border-radius: 14px;
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .hero-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #0a2839;
+      margin-bottom: 4px;
+    }
+
+    .hero-subtitle {
+      font-size: 0.82rem;
+      color: #4a5a66;
+      margin-bottom: 8px;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 8px;
+      background: #e8eef3;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 6px;
+    }
+
+    .progress-fill-2 {
+      height: 100%;
+      background: linear-gradient(90deg, #1f7fbf 0%, #66b4e4 100%);
+      border-radius: inherit;
+    }
+
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.74rem;
+      color: #5c6b76;
+      gap: 8px;
+    }
+
+    .step-list {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .step-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #f8fbfd;
+      border: 1px solid #e6ebef;
+      border-radius: 12px;
+      padding: 8px 10px;
+    }
+
+    .step-number {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #0f3244;
+      color: white;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .step-item strong {
+      display: block;
+      font-size: 0.82rem;
+      color: #16323f;
+    }
+
+    .next-steps-card {
+      background: linear-gradient(135deg, #d4f1e8 0%, #e8f6f2 100%);
+      border: 1px solid #a8e6d1;
+      border-radius: 14px;
+      padding: 12px 12px;
+      margin-bottom: 12px;
+    }
+
+    .next-steps-card h3 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #0d5a3a;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .next-steps-card p {
+      font-size: 0.85rem;
+      color: #1a6b48;
+      line-height: 1.5;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #d4f1e8;
+      color: #0d5a3a;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .status-badge i {
+      font-size: 0.9rem;
+    }
+
+    .page-title {
+      padding: 14px 14px 12px;
+      border-bottom: 1px solid #e8edf2;
+      background: linear-gradient(90deg, #f8fafc 0%, #f4efe7 100%);
+    }
+    .form-section {
+      margin-bottom: 18px;
+    }
+    .form-grid {
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+    }
+    .form-field {
+      display:flex;
+      flex-direction:column;
+      gap: 8px;
+    }
+    .field-label {
+      font-size:0.9rem;
+      font-weight:600;
+      color:#334155;
+    }
+    .field-line {
+      min-height:40px;
+      border:1px solid #dfe6ee;
+      border-radius: 10px;
+      background:#f8fafb;
+      padding:10px 12px;
+      color:#102a43;
+      letter-spacing:0.1px;
+      font-size:0.92rem;
+    }
+    .checkbox-group {
+      display:grid;
+      gap: 10px;
+    }
+    .checkbox-item {
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 1px solid #e2e8ef;
+      background: #fbfdff;
+    }
+    .checkbox-item input {
+      accent-color: #1d7fbf;
+      width: 18px;
+      height: 18px;
+    }
+    .checkbox-item label {
+      font-size: 0.95rem;
+      color: #334155;
+      cursor: pointer;
+    }
+    .form-note {
+      margin-top: 16px;
+      color: #475569;
+      font-size: 0.92rem;
+      line-height: 1.55;
+    }
+    .form-subtitle {
+      color: #334155;
+      font-size: 0.95rem;
+      margin-bottom: 14px;
+    }
+    .page-title .title-organization {
+      font-size: 0.85rem;
+      letter-spacing: 1.2px;
+      color: #5f6d7b;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .page-title .title-main {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #0f3244;
+      letter-spacing: 0.2px;
+      margin-bottom: 4px;
+      font-family: 'Georgia', 'Times New Roman', serif;
+      text-transform: uppercase;
+    }
+    .page-title .title-subtitle {
+      font-size: 0.95rem;
+      color: #2b4b63;
+      letter-spacing: 0.2px;
+      font-weight: 600;
+    }
+    .section-docs-group {
+      margin-bottom: 12px;
+    }
+
+    .docs-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #0d5a3a;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .flag-portugal {
+      width: 72px;
+      height: 44px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #d7e0e7;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+      display: inline-flex;
+      flex-shrink: 0;
+    }
+    .flag-portugal .band {
+      width: 33.33%;
+      height: 100%;
+    }
+    .flag-portugal .band-green { background: #006600; }
+    .flag-portugal .band-red { background: #ff0000; }
+    .flag-portugal .band-yellow { background: #ffcc00; }
+    .flag-caption {
+      font-size: 0.9rem;
+      color: #21455a;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+    }
+
+    /* pied de page – signature agence */
+    .footer-agence {
+      background: linear-gradient(90deg, #f2f5f7 0%, #f8f4eb 100%);
+      padding: 12px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      border-top: 1px solid #d0d9e1;
+      color: #213342;
+      font-size: 0.9rem;
+    }
+
+    .footer-agence .agence-info span:last-child {
+      color: #5d7687;
+    }
+
+    .footer-agence .agence-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .footer-agence .agence-info i {
+      color: #b22234;
+      font-size: 1.1rem;
+    }
+
+    .footer-agence .agence-info strong {
+      font-weight: 600;
+      color: #0f2c3b;
+    }
+
+    .footer-agence .date-depot {
+      background: #d7e2ec;
+      padding: 4px 18px;
+      border-radius: 60px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .signature-block {
+      border-top: 1px solid rgba(22,50,63,0.12);
+      padding-top: 8px;
+      margin-top: 8px;
+      font-style: italic;
+    }
+
+    /* small screens */
+    @media (max-width: 640px) {
+      body {
+        padding: 0;
+      }
+      .dossier-agence {
+        min-height: 100vh;
+      }
+      .header-diplomatique {
+        align-items: flex-start;
+        text-align: left;
+        padding: 14px 12px 12px;
+      }
+      .header-actions {
+        position: static;
+        margin-top: 8px;
+        width: 100%;
+        justify-content: flex-start;
+      }
+      .info-client .nom-complet {
+        justify-content: flex-start;
+        font-size: 1.16rem;
+        line-height: 1.25;
+      }
+      .info-client .ref-dossier {
+        justify-content: flex-start;
+        gap: 6px;
+      }
+      .status-card {
+        justify-content: flex-start;
+        margin-top: 8px;
+      }
+      .seal-block {
+        margin-left: 0;
+        margin-top: 6px;
+        justify-content: flex-start;
+      }
+      .page-title {
+        padding: 12px 12px 10px;
+      }
+      .page-title .title-main {
+        font-size: 0.98rem;
+        letter-spacing: 0.1px;
+      }
+      .page-title .title-subtitle {
+        font-size: 0.84rem;
+      }
+      .contenu-dossier {
+        padding: 12px 12px 14px;
+      }
+      .section-doc {
+        padding: 10px 10px 8px;
+      }
+      .grille-docs {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+      .doc-item .nom-fichier {
+        font-size: 0.68rem;
+      }
+      .recap-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-agence {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 12px 12px;
+      }
+      .footer-agence .agence-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="dossier-agence">
+    <!-- EN-TÊTE avec cachet agence -->
+    <div class="header-diplomatique">
+      <img class="logo" src="logo.png" alt="Logo de l’agence">
+      <img class="photo-profil" src="jedu no, de profil.jpeg" alt="Photo client">
+      <div class="header-actions">
+        <button id="printBtn" class="btn"><i class="fas fa-print"></i> Imprimer</button>
+        <a class="btn" href="#" id="downloadBtn"><i class="fas fa-share-alt"></i> Partager</a>
+      </div>
+      <div class="info-client">
+        <div class="cachet"><i class="fas fa-shield-alt"></i><span>Service consulaire · procédure officielle</span></div>
+        <div class="badge-agence">
+          <i class="fas fa-building"></i>
+          <span>Ambassade / Agence ViaLuso · Dépôt diplomatique</span>
+        </div>
+        <div class="nom-complet">
+          BAYE CHEIKH GAYE
+          <small>N° PASSPORT A04455007</small>
+        </div>
+        <div class="sous-titre">Dossier de demande de visa · consultation administrative</div>
+        <div class="ref-dossier">
+          <span class="num-dossier"><i class="far fa-folder-open" style="margin-right: 6px;"></i>Dossier PT-2026-1147</span>
+          <span class="statut"><i class="fas fa-clock" style="margin-right: 6px;"></i>En instruction</span>
+          <span class="date-chip"><i class="far fa-calendar-alt"></i> 09/07/2026</span>
+        </div>
+        <div class="status-card">
+          <span class="status-pill status-pill--ok"><i class="fas fa-check-circle"></i> Dossier complet</span>
+          <span class="status-pill status-pill--warn"><i class="fas fa-calendar-check"></i> Rendez-vous probable : novembre 2026</span>
+        </div>
+      </div>
+      <div class="seal-block">
+        <img class="seal-image" src="cachet.png" alt="Cachet officiel">
+        <img class="stamp-image" src="tenpon.webp" alt="Tampon officiel">
+      </div>
+    </div>
+    <div class="page-title">
+      <div class="title-organization">Service consulaire · dossier officiel</div>
+      <div class="title-main">VISA PORTUGAL · DOSSIER D’INSTRUCTION</div>
+      <div class="title-subtitle">Présentation administrative et diplomatique des pièces déposées</div>
+      <div class="title-row">
+        <img class="flag-portugal" src="drapeau portugalù.jpg" alt="Drapeau du Portugal">
+        <span class="flag-caption">Portugal · Lisbonne · Porto</span>
+      </div>
+    </div>
+
+    <div class="hero-card">
+      <div>
+        <div class="hero-title">Dossier prêt pour instruction</div>
+        <div class="hero-subtitle">Visa Portugal · progression du dossier</div>
+        <div class="progress-track"><div class="progress-fill-2" style="width: 75%"></div></div>
+        <div class="progress-meta"><span>Étapes : 3/4</span><span>Prévu : novembre 2026</span></div>
+      </div>
+      <button class="app-btn"><i class="fas fa-folder-open"></i> Ouvrir</button>
+    </div>
+
+    <div class="step-list">
+      <div class="step-item">
+        <span class="step-number">1</span>
+        <div><strong>Pièces principales</strong><small>Documents essentiels reçus</small></div>
+      </div>
+      <div class="step-item">
+        <span class="step-number">2</span>
+        <div><strong>Documents administratifs</strong><small>Pièces officielles ajoutées</small></div>
+      </div>
+      <div class="step-item">
+        <span class="step-number">3</span>
+        <div><strong>Rendez-vous</strong><small>Prévision novembre 2026</small></div>
+      </div>
+    </div>
+
+    <!-- CONTENU : Images + PDF -->
+    <div class="contenu-dossier">
+      <div class="status-badge">
+        <i class="fas fa-check-circle"></i> Dossier complet et transmis
+      </div>
+
+      <div class="next-steps-card">
+        <h3><i class="fas fa-calendar-alt"></i> Prochaines étapes</h3>
+        <p><strong>Rendez-vous prévu :</strong> Novembre 2026</p>
+        <p style="margin-top: 6px; font-size: 0.82rem;">Vous serez contacté par email pour confirmer votre rendez-vous à l'ambassade.</p>
+      </div>
+
+      <div class="section-docs-group">
+        <span class="docs-label">📄 Documents clés</span>
+        <div class="section-doc">
+          <div class="grille-docs">
+            <div class="doc-item">
+              <img src="Passport.png" alt="Passeport">
+              <div class="nom-fichier">Passport.png</div>
+              <div class="meta-fichier"><i class="far fa-image"></i> Passeport</div>
+            </div>
+            <div class="doc-item">
+              <img src="lettre demande de visa.png" alt="Lettre demande de visa">
+              <div class="nom-fichier">lettre demande</div>
+              <div class="meta-fichier"><i class="far fa-image"></i> Lettre</div>
+            </div>
+            <div class="doc-item">
+              <img src="Justification ebergement.png" alt="Justificatif d'hébergement">
+              <div class="nom-fichier">hébergement</div>
+              <div class="meta-fichier"><i class="far fa-image"></i> Justificatif</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-docs-group">
+        <span class="docs-label">📁 Documents administratifs</span>
+        <div class="section-doc">
+          <div class="grille-docs">
+          <a class="doc-item" href="Gaye boa 1.pdf" target="_blank" rel="noopener noreferrer">
+            <div class="type-doc">Document officiel</div>
+            <div class="pdf-placeholder">
+              <i class="fas fa-file-pdf"></i>
+              <span>PDF</span>
+            </div>
+            <div class="nom-fichier">Gaye boa 1.pdf</div>
+            <div class="meta-fichier"><i class="far fa-file-pdf"></i> Ouvrir</div>
+          </a>
+          <a class="doc-item" href="Gaye boa 2.pdf" target="_blank" rel="noopener noreferrer">
+            <div class="type-doc">Document officiel</div>
+            <div class="pdf-placeholder">
+              <i class="fas fa-file-pdf"></i>
+              <span>PDF</span>
+            </div>
+            <div class="nom-fichier">Gaye boa 2.pdf</div>
+            <div class="meta-fichier"><i class="far fa-file-pdf"></i> Ouvrir</div>
+          </a>
+          <a class="doc-item" href="Gaye boa 3.pdf" target="_blank" rel="noopener noreferrer">
+            <div class="type-doc">Document officiel</div>
+            <div class="pdf-placeholder">
+              <i class="fas fa-file-pdf"></i>
+              <span>PDF</span>
+            </div>
+            <div class="nom-fichier">Gaye boa 3.pdf</div>
+            <div class="meta-fichier"><i class="far fa-file-pdf"></i> Ouvrir</div>
+          </a>
+          <a class="doc-item" href="Gaye CMS 1.pdf" target="_blank" rel="noopener noreferrer">
+            <div class="type-doc">Document officiel</div>
+            <div class="pdf-placeholder">
+              <i class="fas fa-file-pdf"></i>
+              <span>PDF</span>
+            </div>
+            <div class="nom-fichier">Gaye CMS 1.pdf</div>
+            <div class="meta-fichier"><i class="far fa-file-pdf"></i> Ouvrir</div>
+          </a>
+          <a class="doc-item" href="Gaye CMS 2.pdf" target="_blank" rel="noopener noreferrer">
+            <div class="type-doc">Document officiel</div>
+            <div class="pdf-placeholder">
+              <i class="fas fa-file-pdf"></i>
+              <span>PDF</span>
+            </div>
+            <div class="nom-fichier">Gaye CMS 2.pdf</div>
+            <div class="meta-fichier"><i class="far fa-file-pdf"></i> Ouvrir</div>
+          </a>
+          <a class="doc-item" href="Gaye CMS 3.pdf" target="_blank" rel="noopener noreferrer">
+            <div class="type-doc">Document officiel</div>
+            <div class="pdf-placeholder">
+              <i class="fas fa-file-pdf"></i>
+              <span>PDF</span>
+            </div>
+            <div class="nom-fichier">Gaye CMS 3.pdf</div>
+            <div class="meta-fichier"><i class="far fa-file-pdf"></i> Ouvrir</div>
+          </a>
+        </div>
+      </div>
+
+      <!-- SECTION PDF -->
+      <div class="section-doc">
+        <div class="titre-section">
+          <i class="fas fa-file-pdf"></i>
+          <h2>Procédure consulaire · documents annexes</h2>
+          <span class="compteur">4</span>
+        </div>
+        <div class="grille-docs">
+          <div class="doc-item">
+            <div class="pdf-placeholder">
+              <i class="fas fa-file-pdf"></i>
+              <span>PDF</span>
+            </div>
+            <div class="nom-fichier">formulaire_visa.pdf</div>
+            <div class="meta-fichier"><i class="far fa-file-pdf"></i> 3.2 MB</div>
+          </div>
+          <div class="doc-item">
+            <div class="pdf-placeholder">
+              <i class="fas fa-file-pdf"></i>
+              <span>PDF</span>
+            </div>
+            <div class="nom-fichier">hebergement_LX.pdf</div>
+            <div class="meta-fichier"><i class="far fa-file-pdf"></i> 1.4 MB</div>
+          </div>
+          <div class="doc-item">
+            <div class="pdf-placeholder">
+              <i class="fas fa-file-pdf"></i>
+              <span>PDF</span>
+            </div>
+            <div class="nom-fichier">attestation_bancaire.pdf</div>
+            <div class="meta-fichier"><i class="far fa-file-pdf"></i> 0.9 MB</div>
+          </div>
+          <div class="doc-item">
+            <div class="pdf-placeholder">
+              <i class="fas fa-file-pdf"></i>
+              <span>PDF</span>
+            </div>
+            <div class="nom-fichier">convocation_entretien.pdf</div>
+            <div class="meta-fichier"><i class="far fa-file-pdf"></i> 0.5 MB</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PIED : identité agence + date de dépôt -->
+    <div class="footer-agence">
+      <div class="agence-info">
+        <span><strong>Service consulaire Portugal</strong></span>
+        <span style="font-size: 0.8rem;">Ambassade ViaLuso · Bureau administratif</span>
+      </div>
+      <div class="date-depot">
+        <i class="far fa-calendar"></i> Dépôt : 09 juil. 2026
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+    var p = document.getElementById('printBtn');
+    if(p) p.addEventListener('click', function(){ window.print(); });
+    var dl = document.getElementById('downloadBtn');
+    if(dl) dl.addEventListener('click', function(e){ e.preventDefault(); window.print(); });
+
+    // Liste des pièces attendues et mots-clés pour détection
+    var items = [
+      { key: 'photo_passeport', label: "Photo du passeport (page principale)", kws:['passeport','passport'] },
+      { key: 'passeport_valide', label: "Passeport valide", kws:['passeport','passport'] },
+      { key: 'photo_id', label: "Photo d'identité récente", kws:['photo','identit','identité','id'] },
+      { key: 'releve_bancaire', label: "Relevé bancaire (3-6 mois)", kws:['relev','bank','bancaire','boa'] },
+      { key: 'attestation_travail', label: "Attestation de travail / justificatif de profession", kws:['contrat','travail','attestation'] },
+      { key: 'bulletin_salaire', label: "Bulletin de salaire", kws:['salaire','bulletin'] },
+      { key: 'justif_domicile', label: "Justificatif de domicile", kws:['domicile','residence','adresse'] },
+      { key: 'reservation_vol', label: "Réservation de vol (si disponible)", kws:['vol','reservation','billet'] },
+      { key: 'reservation_hebergement', label: "Réservation hôtel / hébergement", kws:['hotel','héberg','hebergement','reservation'] },
+      { key: 'certificat_mariage', label: "Certificat de mariage (si applicable)", kws:['mariage'] },
+      { key: 'extrait_naissance', label: "Extrait de naissance / Carte d'identité", kws:['naissance','identit','carte'] },
+      { key: 'lettre_invitation', label: "Lettre d'invitation (si applicable)", kws:['invitation'] }
+    ];
+
+    var grid = document.getElementById('recapGrid');
+    var progressFill = document.getElementById('progressFill');
+    var recapCount = document.getElementById('recap-count');
+
+    // Obtenir liste des fichiers visibles sur la page (noms)
+    var files = [];
+    document.querySelectorAll('.nom-fichier').forEach(function(n){ files.push(n.innerText.toLowerCase()); });
+    document.querySelectorAll('.grille-docs a').forEach(function(a){ var href=a.getAttribute('href'); if(href) files.push(href.toLowerCase()); });
+
+    // Charger état sauvegardé
+    var saved = {};
+    try{ saved = JSON.parse(localStorage.getItem('recapStatus')||'{}'); }catch(e){ saved = {}; }
+
+    function detectProvided(kws){
+      kws = kws.map(function(k){ return k.toLowerCase(); });
+      for(var i=0;i<files.length;i++){
+        for(var j=0;j<kws.length;j++){
+          if(files[i].indexOf(kws[j]) !== -1) return files[i];
+        }
+      }
+      return null;
+    }
+
+    function render(){
+      grid.innerHTML='';
+      var total = items.length, provided = 0;
+      items.forEach(function(it){
+        var detected = detectProvided(it.kws);
+        var status = saved[it.key];
+        if(typeof status === 'undefined') status = detected ? true : false;
+        if(status) provided++;
+
+        var el = document.createElement('div'); el.className='recap-item'; el.setAttribute('data-key', it.key);
+        var dot = document.createElement('div'); dot.className='status-dot ' + (status? 'status-yes':'status-no');
+        var label = document.createElement('div'); label.style.flex='1'; label.innerText = it.label;
+        var note = document.createElement('div'); note.style.fontSize='0.8rem'; note.style.color='#4b6b7b'; note.innerText = detected ? (' trouvé: ' + detected) : (status? ' fourni' : ' non fourni');
+        el.appendChild(dot); el.appendChild(label); el.appendChild(note);
+
+        el.addEventListener('click', function(){
+          saved[it.key] = !Boolean(saved[it.key]) && !status ? true : !status; // toggle based on current
+          // recompute: if saved value exists use it, else use detected
+          status = saved[it.key];
+          dot.className = 'status-dot ' + (status? 'status-yes':'status-no');
+          note.innerText = status ? ' fourni' : (detected? (' trouvé: ' + detected) : ' non fourni');
+          localStorage.setItem('recapStatus', JSON.stringify(saved));
+          updateProgress();
+        });
+
+        grid.appendChild(el);
+      });
+      updateProgress();
+    }
+
+    function updateProgress(){
+      var total = items.length; var provided=0;
+      items.forEach(function(it){ var v = saved[it.key]; if(typeof v==='undefined'){ // detect live
+          var det = detectProvided(it.kws); if(det) provided++; }
+        else if(v) provided++; });
+      var pct = Math.round((provided/total)*100);
+      progressFill.style.width = pct + '%';
+      recapCount.innerText = provided + '/' + total;
+    }
+
+    render();
+  });
+</script>
+</html>
