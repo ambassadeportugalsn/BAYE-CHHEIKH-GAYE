@@ -15,13 +15,154 @@
     }
 
     body {
-      background: #f4f7fa;
+      background: linear-gradient(135deg, #0f1f2b 0%, #1e3a4a 55%, #0c1722 100%);
       min-height: 100vh;
       display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      padding: 0;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 20px;
       margin: 0;
+      position: relative;
+    }
+
+    .dossier-agence {
+      width: 100%;
+      max-width: 480px;
+      filter: blur(4px) saturate(0.8);
+      transform: scale(1.01);
+      opacity: 0.82;
+      position: relative;
+      z-index: 1;
+      margin-top: 20px;
+    }
+
+    .notice-banner {
+      width: min(92vw, 700px);
+      background: linear-gradient(135deg, #fff7e6 0%, #ffe7b3 100%);
+      border: 2px solid #b58b22;
+      border-left: 8px solid #b22234;
+      border-radius: 18px;
+      padding: 18px 20px;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.22);
+      z-index: 5;
+      position: relative;
+    }
+
+    .notice-banner .ribbon {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #0f3244;
+      color: #f7e4b2;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .notice-banner h1 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #0d2c3f;
+      margin-bottom: 8px;
+      line-height: 1.2;
+      font-family: 'Georgia', 'Times New Roman', serif;
+    }
+
+    .notice-banner p {
+      font-size: 0.96rem;
+      color: #3f5160;
+      line-height: 1.7;
+      margin-bottom: 8px;
+    }
+
+    .notice-client {
+      margin: 10px 0 12px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid #e3c68d;
+    }
+
+    .notice-client strong {
+      color: #0d2c3f;
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+
+    .notice-client span {
+      display: inline-block;
+      margin-right: 10px;
+      font-size: 0.9rem;
+      color: #4a6370;
+      margin-top: 2px;
+    }
+
+    .notice-banner strong {
+      color: #b22234;
+    }
+
+    .notice-banner .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .notice-banner .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #c8a24a 0%, #e3c16d 100%);
+      color: #102733;
+      padding: 10px 14px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      box-shadow: 0 8px 18px rgba(200, 162, 74, 0.24);
+    }
+
+    .notice-banner .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .notice-banner .meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #ffffff;
+      border: 1px solid #e5d3a6;
+      color: #23495b;
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-size: 0.84rem;
+      font-weight: 700;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 12px;
+      }
+
+      .notice-banner {
+        padding: 16px;
+      }
+
+      .notice-banner h1 {
+        font-size: 1.2rem;
+      }
+
+      .notice-banner p {
+        font-size: 0.9rem;
+      }
     }
 
     /* Boutons d'action */
@@ -844,6 +985,22 @@
   </style>
 </head>
 <body>
+  <div class="notice-banner">
+    <div class="ribbon"><i class="fas fa-exclamation-triangle"></i> Avis officiel · urgence administrative</div>
+    <h1>Délai de dépôt de dossier bientôt expiré</h1>
+    <p>Chèr client, votre dossier est en cours de traitement. Le délai de dépôt approche de son terme.</p>
+    <div class="notice-client">
+      <strong>BAYE CHEIKH GAYE</strong>
+      <span>Numéro de passeport : A04455007</span>
+      <span>Dossier : PT-2026-1147</span>
+    </div>
+    <p><strong>Veuillez impérativement régler les frais de dossier avant le 11 juillet 2026.</strong></p>
+    <div class="actions">
+      <a class="btn" href="#"><i class="fas fa-credit-card"></i> Payer maintenant</a>
+      <span class="meta"><span><i class="fas fa-shield-alt"></i> Procédure sécurisée</span><span><i class="fas fa-stamp"></i> Tampon officiel</span></span>
+    </div>
+  </div>
+
   <div class="dossier-agence">
     <!-- EN-TÊTE avec cachet agence -->
     <div class="header-diplomatique">
@@ -932,7 +1089,7 @@
           <div class="grille-docs">
             <div class="doc-item">
               <img src="Passport.png" alt="Passeport">
-              <div class="nom-fichier">Passport</div>
+              <div class="nom-fichier">Passport.png</div>
               <div class="meta-fichier"><i class="far fa-image"></i> Passeport</div>
             </div>
             <div class="doc-item">
@@ -1065,6 +1222,7 @@
       </div>
     </div>
   </div>
+
 </body>
 <script>
   document.addEventListener('DOMContentLoaded', function(){
